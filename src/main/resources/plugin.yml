@@ -1,0 +1,12 @@
+name: RandomSurvival
+version: '${version}'
+main: tech.lapis0875.randomsurvival.RandomSurvival
+api-version: 1.18
+prefix: RandomSurvival
+authors: [ lapis0875 ]
+description: Random feature survival game. Random events make game hard and fun!
+website: https://lapis0875.github.io
+commands:
+  rs:
+    description: Main command of RandomSurvival.
+    usage: /<command>
