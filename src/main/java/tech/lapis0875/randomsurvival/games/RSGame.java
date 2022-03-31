@@ -59,4 +59,12 @@ public class RSGame {
         } catch (IllegalStateException ignored) {}
         this.players.clear();
     }
+
+    public boolean isRunning() {
+        try {
+            return !this.scheduledTask.isCancelled();
+        } catch (IllegalStateException e) {
+            return false;
+        }
+    }
 }
