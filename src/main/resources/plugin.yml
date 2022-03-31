@@ -8,5 +8,5 @@ description: Random feature survival game. Random events make game hard and fun!
 website: https://lapis0875.github.io
 commands:
   rs:
-    description: Main command of RandomSurvival.
-    usage: /<command>
+    description: Main command of RandomSurvival. Can have additional arguments for certain games.
+    usage: /<command> <start | stop> <SwapLocation | ItemRemoval | RecipeRandomness> {delay} {mode}
