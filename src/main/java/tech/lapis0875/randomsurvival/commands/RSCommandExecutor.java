@@ -9,6 +9,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import tech.lapis0875.randomsurvival.Constants;
 import tech.lapis0875.randomsurvival.games.RSGame;
+import tech.lapis0875.randomsurvival.games.RSGameManager;
+import tech.lapis0875.randomsurvival.games.item_removal.ItemRemovalGame;
+import tech.lapis0875.randomsurvival.games.recipe_randomness.RecipeRandomnessGame;
 import tech.lapis0875.randomsurvival.games.swap_location.SwapLocationGame;
 
 import java.util.ArrayList;
@@ -22,24 +25,38 @@ public class RSCommandExecutor implements CommandExecutor, TabCompleter {
             case Constants.Commands.OPT_START -> {
                 switch (args[1]) {
                     case Constants.Games.SWAP_LOCATION -> {
-                        RSGame game;
+                        SwapLocationGame game = RSGameManager.getInstance().createGameInstance(SwapLocationGame.class);
                         if (args.length > 2) {
-                            game = new SwapLocationGame(Integer.parseInt(args[2]));
-                        } else {
-                            game = new SwapLocationGame();
+                            game.setDelay(Integer.parseInt(args[2]));
                         }
                         game.start();
                     }
                     case Constants.Games.ITEM_REMOVAL -> {
-
+                        ItemRemovalGame game = RSGameManager.getInstance().createGameInstance(ItemRemovalGame.class);
+                        if (args.length > 2) {
+                            game.setDelay(Integer.parseInt(args[2]));
+                        }
+                        game.start();
                     }
                     case Constants.Games.RECIPE_RANDOMNESS -> {
+                        RecipeRandomnessGame game = RSGameManager.getInstance().createGameInstance(RecipeRandomnessGame.class);
+                        game.start();
 
                     }
                 }
             }
             case Constants.Commands.OPT_STOP -> {
-
+                switch (args[1]) {
+                    case Constants.Games.SWAP_LOCATION -> {
+                        RSGameManager.getInstance().stopInstance(SwapLocationGame.class);
+                    }
+                    case Constants.Games.ITEM_REMOVAL -> {
+                        RSGameManager.getInstance().stopInstance(ItemRemovalGame.class);
+                    }
+                    case Constants.Games.RECIPE_RANDOMNESS -> {
+                        RSGameManager.getInstance().stopInstance(RecipeRandomnessGame.class);
+                    }
+                }
             }
         }
         return false;
