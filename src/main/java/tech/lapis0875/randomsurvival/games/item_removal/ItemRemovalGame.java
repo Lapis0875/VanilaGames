@@ -34,6 +34,14 @@ public class ItemRemovalGame extends RSGame {
         this.delay = delay;
     }
 
+    public RemoveMode getMode() {
+        return this.mode;
+    }
+
+    public int getDelay() {
+        return this.delay;
+    }
+
     @Override
     public void start() {
         this.collectPlayers();
